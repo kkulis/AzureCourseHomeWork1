@@ -2,7 +2,9 @@
 using KursAzureZad1.Entities;
 using KursAzureZad1.Entities.Models;
 using KursAzureZad1.ReadModels;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace KursAzureZad1.Services
@@ -27,6 +29,24 @@ namespace KursAzureZad1.Services
 
             await _context.Exercises.AddAsync(exercise);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<ExerciseReadModel>> GetAllExercises()
+        {
+            var exercises = await _context.Exercises.ToListAsync();
+            var exercisesReadModel = new  List<ExerciseReadModel>();
+            foreach (var exercise in exercises)
+            {
+                var mappedExercise = new ExerciseReadModel
+                {
+                    Id = exercise.Id,
+                    Name = exercise.Name,
+                    Distance = exercise.Distance,
+                    Minutes = exercise.Minutes
+                };
+                exercisesReadModel.Add(mappedExercise);
+            }
+            return exercisesReadModel;
         }
 
         public async Task<ExerciseReadModel> GetExercise(Guid Id)

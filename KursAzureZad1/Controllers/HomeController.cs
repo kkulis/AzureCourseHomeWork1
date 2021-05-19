@@ -31,5 +31,13 @@ namespace KursAzureZad1.Controllers
 
             return Ok();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllExercises()
+        {
+            var result = await _homeService.GetAllExercises();
+
+            return Ok(result);
+        }
     }
 }
