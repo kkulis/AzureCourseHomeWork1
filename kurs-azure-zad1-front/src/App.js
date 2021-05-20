@@ -6,13 +6,13 @@ const App = () => {
     const [distance, setDistance] = useState(0);
     const [minutes, setMinutes] = useState(0);
     const getExercisesData = () => {
-        fetch(`http://localhost:3000/api/home`)
+        fetch(`https://localhost:3000/api/home`)
             .then((response) => response.json())
             .then((data) => setExercises(data));
     };
 
-    const AddExercise = () => {
-        fetch(`http://localhost:3000/api/home`, {
+    const AddExercise = async () => {
+        await fetch(`https://localhost3000/api/home`, {
             headers: { 'Content-Type': 'application/json' },
             method: 'POST',
             body: JSON.stringify({
@@ -26,7 +26,7 @@ const App = () => {
 
     useEffect(() => {
         getExercisesData();
-    });
+    }, []);
     return (
         <div>
             <table>
