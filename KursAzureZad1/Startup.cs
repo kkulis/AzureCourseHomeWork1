@@ -20,6 +20,7 @@ namespace KursAzureZad1
         {
             services.AddControllers();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddApplicationInsightsTelemetry();
 
             //DI
             services.AddTransient<IHomeService, HomeService>();

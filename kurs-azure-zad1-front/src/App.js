@@ -12,7 +12,7 @@ const App = () => {
     };
 
     const AddExercise = async () => {
-        await fetch(`https://localhost3000/api/home`, {
+        await fetch(`https://localhost:3000/api/home`, {
             headers: { 'Content-Type': 'application/json' },
             method: 'POST',
             body: JSON.stringify({
